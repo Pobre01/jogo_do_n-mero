@@ -33,3 +33,35 @@ let numeroAleatorio = Math.floor(Math.random() * 100) + 1;
                     baixoOuAlto.textContent = "O último palpite foi muito alto"
                 }
             }
+
+            contagemPalpites++;
+            campoPalpite.value = "";
+            campoPalpite.focus();
+        }
+
+        envioPalpite.addEventListener('click', verificarPalipite);
+
+        function finalizarJogo(){
+            campoPalpite.disabled = true;
+            envioPalpite.disabled = true;
+            botaoReiniciar = document.createElement('button');
+            document.body.appendChild(botaoReiniciar);
+            botaoReiniciar.addEventListener('click', reiniciarJogo);
+        }
+
+
+        function reiniciarJogo() {
+            contagemPalpites = 1;
+            const paragrafosReiniciar = document.querySelectorAll('.paragrafoResultado p');
+            for (const paragrafoReiniciar of paragrafoReiniciar) {
+              paragrafoReiniciar.textContent = "";
+            }
+        
+        botaoReiniciar.parentNode.removeChild(botaoReiniciar);
+        campoPalpite.disabled = false;
+        envioPalpite.disabled = false;
+        campoPalpite.value = "";
+        campoPalpite.focus();
+        ultimoResultado.computedStyleMap.backgroundColor = 'white';
+        numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+        }
